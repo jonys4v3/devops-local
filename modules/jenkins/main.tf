@@ -1,7 +1,3 @@
-locals {
-  csp = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self';"
-}
-
 resource "docker_volume" "home" {
   name = "${var.project_name}_jenkins_home"
 }
@@ -18,6 +14,7 @@ resource "docker_image" "this" {
     dockerfile_sha = filesha256("${path.root}/services/jenkins/Dockerfile")
     plugins_sha    = filesha256("${path.root}/services/jenkins/config/plugins.txt")
     casc_sha       = filesha256("${path.root}/services/jenkins/config/casc.yaml")
+    csp_sha        = filesha256("${path.root}/services/jenkins/config/init.groovy.d/01-csp.groovy")
   }
 }
 
@@ -35,7 +32,7 @@ resource "docker_container" "this" {
     "JENKINS_ADMIN_PASSWORD=${var.jenkins_admin_password}",
     "JENKINS_PUBLIC_URL=${var.jenkins_public_url}",
     "JENKINS_ADMIN_EMAIL=${var.jenkins_admin_email}",
-    "JAVA_OPTS=-Djenkins.install.runSetupWizard=false -Dhudson.model.DirectoryBrowserSupport.CSP=${local.csp}"
+    "JAVA_OPTS=-Djenkins.install.runSetupWizard=false"
   ]
 
   ports {
