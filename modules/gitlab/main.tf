@@ -27,8 +27,8 @@ resource "docker_image" "this" {
 resource "docker_container" "this" {
   name     = "${var.project_name}_gitlab"
   hostname = "gitlab"
-  image   = docker_image.this.image_id
-  restart = "always"
+  image    = docker_image.this.image_id
+  restart  = "always"
 
   shm_size = 268435456
 

@@ -20,10 +20,10 @@ resource "docker_network" "devops_network" {
   driver = "bridge"
 }
 
-resource "docker_volume" "gitlab_config"    { name = "gitlab_config" }
-resource "docker_volume" "gitlab_logs"      { name = "gitlab_logs" }
-resource "docker_volume" "gitlab_data"      { name = "gitlab_data" }
-resource "docker_volume" "jenkins_home"     { name = "jenkins_home" }
+resource "docker_volume" "gitlab_config" { name = "gitlab_config" }
+resource "docker_volume" "gitlab_logs" { name = "gitlab_logs" }
+resource "docker_volume" "gitlab_data" { name = "gitlab_data" }
+resource "docker_volume" "jenkins_home" { name = "jenkins_home" }
 resource "docker_volume" "artifactory_data" { name = "artifactory_data" }
 
 # =========================================================

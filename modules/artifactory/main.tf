@@ -2,6 +2,39 @@ resource "docker_volume" "data" {
   name = "${var.project_name}_artifactory_data"
 }
 
+resource "docker_volume" "postgres_data" {
+  name = "${var.project_name}_artifactory_postgres_data"
+}
+
+resource "docker_image" "postgres" {
+  name         = "postgres:16-alpine"
+  keep_locally = true
+}
+
+resource "docker_container" "postgres" {
+  name     = "${var.project_name}_artifactory_postgres"
+  hostname = "artifactory-postgres"
+  image    = docker_image.postgres.image_id
+  restart  = "always"
+
+  env = [
+    "TZ=${var.timezone}",
+    "POSTGRES_DB=${var.artifactory_db_name}",
+    "POSTGRES_USER=${var.artifactory_db_user}",
+    "POSTGRES_PASSWORD=${var.artifactory_db_password}"
+  ]
+
+  volumes {
+    volume_name    = docker_volume.postgres_data.name
+    container_path = "/var/lib/postgresql/data"
+  }
+
+  networks_advanced {
+    name    = var.network_name
+    aliases = ["artifactory-postgres", "${var.project_name}_artifactory_postgres"]
+  }
+}
+
 resource "docker_image" "this" {
   name         = "${var.project_name}/artifactory-oss-custom:local"
   keep_locally = true
@@ -19,12 +52,11 @@ resource "docker_image" "this" {
 resource "docker_container" "this" {
   name     = "${var.project_name}_artifactory"
   hostname = "artifactory"
-  image   = docker_image.this.image_id
-  restart = "always"
+  image    = docker_image.this.image_id
+  restart  = "always"
 
   env = [
-    "TZ=${var.timezone}",
-    "JF_ROUTER_ENTRYPOINTS_EXTERNALPORT=8082"
+    "TZ=${var.timezone}"
   ]
 
   ports {
@@ -44,8 +76,18 @@ resource "docker_container" "this" {
     container_path = "/var/opt/jfrog/artifactory"
   }
 
+  volumes {
+    host_path      = abspath("${path.root}/services/artifactory/config")
+    container_path = "/opt/jfrog/artifactory/var/etc"
+    read_only      = false
+  }
+
   networks_advanced {
     name    = var.network_name
     aliases = ["artifactory", "${var.project_name}_artifactory"]
   }
+
+  depends_on = [
+    docker_container.postgres
+  ]
 }

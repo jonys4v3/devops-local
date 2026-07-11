@@ -21,9 +21,9 @@ resource "docker_image" "this" {
 resource "docker_container" "this" {
   name     = "${var.project_name}_jenkins"
   hostname = "jenkins"
-  image   = docker_image.this.image_id
-  restart = "always"
-  user    = "root"
+  image    = docker_image.this.image_id
+  restart  = "always"
+  user     = "root"
 
   env = [
     "TZ=${var.timezone}",

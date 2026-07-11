@@ -33,5 +33,9 @@ module "artifactory" {
   network_name           = module.network.network_name
   artifactory_public_url = var.artifactory_public_url
 
+  artifactory_db_name     = var.artifactory_db_name
+  artifactory_db_user     = var.artifactory_db_user
+  artifactory_db_password = var.artifactory_db_password
+
   depends_on = [module.jenkins]
 }

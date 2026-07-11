@@ -1,13 +1,16 @@
 shared:
-  node:
-    id: artifactory-oss-node-1
-    ip: 127.0.0.1
-  extraJavaOpts: "-Xms512m -Xmx2g"
+  node.0.1
+
+  database:
+    type: postgresql
+    driver: org.postgresql.Driver
+    url: jdbc:postgresql://artifactory-postgres:5432/artifactory
+    username: artifactory
+    password: ArtifactoryPostgres123!
 
 router:
   entrypoints:
     externalPort: 8082
-
 frontend:
-  session:
-    timeMinutes: 60
+    session:
+        timeMinutes: 60

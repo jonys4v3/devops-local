@@ -64,3 +64,22 @@ variable "artifactory_public_url" {
   type        = string
   default     = "http://artifactory:8082/"
 }
+
+variable "artifactory_db_name" {
+  description = "Nombre de la base de datos PostgreSQL para Artifactory."
+  type        = string
+  default     = "artifactory"
+}
+
+variable "artifactory_db_user" {
+  description = "Usuario PostgreSQL para Artifactory."
+  type        = string
+  default     = "artifactory"
+}
+
+variable "artifactory_db_password" {
+  description = "Password PostgreSQL para Artifactory."
+  type        = string
+  sensitive   = true
+  default     = "ArtifactoryPostgres123!"
+}
