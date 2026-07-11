@@ -1,0 +1,13 @@
+shared:
+  node:
+    id: artifactory-oss-node-1
+    ip: 127.0.0.1
+  extraJavaOpts: "-Xms512m -Xmx2g"
+
+router:
+  entrypoints:
+    externalPort: 8082
+
+frontend:
+  session:
+    timeMinutes: 60

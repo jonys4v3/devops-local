@@ -1,0 +1,36 @@
+jenkins:
+  systemMessage: "Jenkins DevOps gestionado con Terraform, Docker y Configuration as Code."
+  numExecutors: 0
+  mode: NORMAL
+  scmCheckoutRetryCount: 2
+  labelString: "controller"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "${JENKINS_ADMIN_ID}"
+          name: "Administrador Jenkins"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  remotingSecurity:
+    enabled: true
+
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+
+unclassified:
+  location:
+    url: "${JENKINS_PUBLIC_URL}"
+    adminAddress: "${JENKINS_ADMIN_EMAIL}"
+
+tool:
+  git:
+    installations:
+      - name: "Default"
+        home: "git"
