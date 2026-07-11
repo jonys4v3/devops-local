@@ -15,7 +15,7 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with Artifactory.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<Server port="8015" shutdown="zZDFJCgGCvKI">
+<Server port="8015" shutdown="zHzrIylLgrHK">
     <Service name="Catalina">
         <Connector port="8081" sendReasonPhrase="false" relaxedPathChars='[]' relaxedQueryChars='[]' maxThreads="200" encodedSolidusHandling="decode"  />
 

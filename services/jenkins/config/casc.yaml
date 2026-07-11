@@ -20,10 +20,6 @@ jenkins:
   remotingSecurity:
     enabled: true
 
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
-
 unclassified:
   location:
     url: "${JENKINS_PUBLIC_URL}"
