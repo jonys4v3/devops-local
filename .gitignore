@@ -10,3 +10,7 @@ crash.*.log
 *.crt
 *.private.key
 *.token
+*.terraform.lock.hcl
+services/artifactory/config/security/
+services/artifactory/config/logrotate/
+services/artifactory/config/access/
