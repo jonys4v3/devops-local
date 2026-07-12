@@ -15,7 +15,7 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with Artifactory.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<Server port="8016" shutdown="FYrFtiergrgN">
+<Server port="8016" shutdown="hHsvdMnDhEsL">
     <Service name="Catalina">
 
         <!-- Must be at least the value of artifactory.access.client.max.connections -->

@@ -36,7 +36,7 @@ resource "docker_container" "postgres" {
 }
 
 resource "docker_image" "this" {
-  name         = "${var.project_name}/artifactory-oss-custom:local"
+  name         = "releases-docker.jfrog.io/jfrog/artifactory-oss:7.146.25"
   keep_locally = true
 
   build {

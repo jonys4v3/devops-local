@@ -6,3 +6,7 @@ crash.log
 crash.*.log
 *.zip
 *.tar.gz
+*.key
+*.crt
+*.private.key
+*.token
