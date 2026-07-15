@@ -1,5 +1,6 @@
 # Arquitectura
 
+<<<<<<< HEAD
 Esta plataforma DevOps se despliega con Terraform sobre Docker y contiene:
 
 - **Network**: red bridge dedicada para aislar los servicios.
@@ -35,3 +36,17 @@ services/nexus/
 ```
 
 El patrón de uso se mantiene equivalente para facilitar la sustitución en pipelines y documentación.
+=======
+La plataforma queda dividida en dos capas:
+
+1. `modules/`: módulos Terraform reutilizables.
+2. `services/`: definición de imagen y configuración propia de cada producto.
+
+## Servicios
+
+- GitLab: `services/gitlab`
+- Jenkins: `services/jenkins`
+- Artifactory: `services/artifactory`
+
+Cada servicio tiene su propio `Dockerfile`, configuración y README.
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38

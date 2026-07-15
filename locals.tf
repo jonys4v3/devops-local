@@ -1,4 +1,5 @@
 locals {
+<<<<<<< HEAD
   name_prefix = "${var.project_name}-${var.environment}"
 
   common_labels = merge(
@@ -15,5 +16,10 @@ locals {
     gitlab  = "${local.name_prefix}-gitlab:local"
     jenkins = "${local.name_prefix}-jenkins:local"
     nexus   = var.nexus_image
+=======
+  common_labels = {
+    project    = var.project_name
+    managed_by = "terraform"
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   }
 }

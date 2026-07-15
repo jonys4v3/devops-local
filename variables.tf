@@ -1,4 +1,5 @@
 variable "project_name" {
+<<<<<<< HEAD
   description = "Nombre lógico del proyecto. Se usa como prefijo de recursos."
   type        = string
   default     = "devops-platform"
@@ -17,16 +18,30 @@ variable "environment" {
 
 variable "docker_host" {
   description = "Docker host usado por el provider. En Linux normalmente unix:///var/run/docker.sock."
+=======
+  description = "Nombre base del laboratorio DevOps. Se usa como prefijo de recursos Docker."
+  type        = string
+  default     = "devops"
+}
+
+variable "docker_host" {
+  description = "Socket Docker local. En Linux/WSL suele ser unix:///var/run/docker.sock."
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   type        = string
   default     = "unix:///var/run/docker.sock"
 }
 
 variable "timezone" {
+<<<<<<< HEAD
   description = "Zona horaria para los servicios."
+=======
+  description = "Zona horaria de los contenedores."
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   type        = string
   default     = "Atlantic/Canary"
 }
 
+<<<<<<< HEAD
 variable "network_cidr" {
   description = "CIDR de la red Docker bridge."
   type        = string
@@ -47,10 +62,21 @@ variable "gitlab_http_port" {
 
 variable "gitlab_ssh_port" {
   description = "Puerto SSH del host para GitLab."
+=======
+variable "gitlab_external_url" {
+  description = "URL externa/local de GitLab."
+  type        = string
+  default     = "http://gitlab:8929"
+}
+
+variable "gitlab_ssh_port" {
+  description = "Puerto SSH expuesto para GitLab."
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   type        = number
   default     = 2222
 }
 
+<<<<<<< HEAD
 variable "jenkins_http_port" {
   description = "Puerto HTTP del host para Jenkins."
   type        = number
@@ -61,6 +87,12 @@ variable "jenkins_agent_port" {
   description = "Puerto del agente Jenkins."
   type        = number
   default     = 50000
+=======
+variable "jenkins_version" {
+  description = "Versión Jenkins LTS usada por el Dockerfile de Jenkins."
+  type        = string
+  default     = "2.568.1"
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
 }
 
 variable "jenkins_admin_user" {
@@ -70,6 +102,7 @@ variable "jenkins_admin_user" {
 }
 
 variable "jenkins_admin_password" {
+<<<<<<< HEAD
   description = "Password administrador inicial de Jenkins. No lo guardes en Git. Usa TF_VAR_jenkins_admin_password."
   type        = string
   sensitive   = true
@@ -116,4 +149,47 @@ variable "common_labels" {
   description = "Labels comunes aplicadas a contenedores, redes y volúmenes."
   type        = map(string)
   default     = {}
+=======
+  description = "Contraseña inicial de Jenkins. Cambiar en terraform.tfvars."
+  type        = string
+  sensitive   = true
+  default     = "CambiarEstaPassword123!"
+}
+
+variable "jenkins_public_url" {
+  description = "URL local/pública de Jenkins."
+  type        = string
+  default     = "http://jenkins:8080/"
+}
+
+variable "jenkins_admin_email" {
+  description = "Correo de administración de Jenkins."
+  type        = string
+  default     = "admin@example.com"
+}
+
+variable "artifactory_public_url" {
+  description = "URL local/pública de Artifactory."
+  type        = string
+  default     = "http://artifactory:8082/"
+}
+
+variable "artifactory_db_name" {
+  description = "Nombre de la base de datos PostgreSQL para Artifactory."
+  type        = string
+  default     = "artifactory"
+}
+
+variable "artifactory_db_user" {
+  description = "Usuario PostgreSQL para Artifactory."
+  type        = string
+  default     = "artifactory"
+}
+
+variable "artifactory_db_password" {
+  description = "Password PostgreSQL para Artifactory."
+  type        = string
+  sensitive   = true
+  default     = "ArtifactoryPostgres123!"
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
 }

@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+
+  # 1. GITLAB - Sistema de control de versiones (Git)
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: 'devops_gitlab'
+    restart: always
+    hostname: 'localhost'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    ports:
+      - '8929:8929' # Interfaz Web
+      - '2222:22'   # Puerto Clonación SSH alternativo
+    volumes:
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_logs:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - devops-network
+
+  # 2. JENKINS - Motor de Integración y Despliegue Continuo (CI/CD)
+  jenkins:
+    image: 'jenkins/jenkins:lts-jdk17'
+    container_name: 'devops_jenkins'
+    restart: always
+    ports:
+      - '8080:8080'   # Interfaz Web de Jenkins
+      - '50000:50000' # Puerto para agentes/slaves remotos
+    volumes:
+      - 'jenkins_home:/var/jenkins_home'
+    networks:
+      - devops-network
+    depends_on:
+      - gitlab
+
+  # 3. ARTIFACTORY - Gestión de Artefactos y Repositorios (Composer/NPM/Docker)
+  artifactory:
+    image: 'jfrog/artifactory-oss:latest'
+    container_name: 'devops_artifactory'
+    restart: always
+    ports:
+      - '8081:8081' # API de Artifactory / Acceso de paquetes
+      - '8082:8082' # Nueva Interfaz Web Unificada (JFrog Platform UI)
+    volumes:
+      - 'artifactory_data:/var/opt/jfrog/artifactory'
+    networks:
+      - devops-network
+    depends_on:
+      - jenkins
+
+# Definición de la red compartida aislada
+networks:
+  devops-network:
+    name: devops_shared_network
+    driver: bridge
+
+# Definición de volúmenes persistentes y seguros
+volumes:
+  gitlab_config:
+  gitlab_logs:
+  gitlab_data:
+  jenkins_home:
+  artifactory_data:

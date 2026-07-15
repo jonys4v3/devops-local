@@ -1,4 +1,5 @@
 .terraform/
+<<<<<<< HEAD
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.*
@@ -11,3 +12,20 @@ tfplan
 backups/
 .DS_Store
 .env
+=======
+*.tfstate
+*.tfstate.*
+terraform.tfvars
+crash.log
+crash.*.log
+*.zip
+*.tar.gz
+*.key
+*.crt
+*.private.key
+*.token
+*.terraform.lock.hcl
+services/artifactory/config/security/
+services/artifactory/config/logrotate/
+services/artifactory/config/access/
+>>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
