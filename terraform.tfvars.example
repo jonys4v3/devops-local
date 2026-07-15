@@ -1,0 +1,27 @@
+project_name = "devops-platform"
+environment  = "dev"
+timezone     = "Atlantic/Canary"
+
+docker_host  = "unix:///var/run/docker.sock"
+network_cidr = "172.30.0.0/24"
+
+gitlab_external_url = "http://localhost:8080"
+gitlab_http_port    = 8080
+gitlab_ssh_port     = 2222
+
+jenkins_http_port      = 8082
+jenkins_agent_port     = 50000
+jenkins_admin_user     = "admin"
+# Recomendado: export TF_VAR_jenkins_admin_password="cambia-esto"
+# jenkins_admin_password = "cambia-esto"
+
+nexus_http_port         = 8081
+nexus_docker_group_port = 8083
+nexus_image             = "sonatype/nexus3:latest"
+nexus_java_min_mem      = "1200m"
+nexus_java_max_mem      = "1200m"
+nexus_java_direct_mem   = "2g"
+
+common_labels = {
+  cost_center = "platform"
+}

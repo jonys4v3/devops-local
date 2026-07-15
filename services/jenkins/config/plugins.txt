@@ -1,0 +1,11 @@
+configuration-as-code
+workflow-aggregator
+git
+gitlab-plugin
+job-dsl
+credentials
+credentials-binding
+docker-workflow
+blueocean
+matrix-auth
+ws-cleanup
