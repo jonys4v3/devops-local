@@ -5,15 +5,19 @@ timezone     = "Atlantic/Canary"
 docker_host  = "unix:///var/run/docker.sock"
 network_cidr = "172.30.0.0/24"
 
+# Credenciales iniciales solicitadas:
+# GitLab root / Nexus admin / Jenkins admin
+# Usuario adicional admin en los 3 servicios: u01a538c
+platform_admin_password = "Cambiame123456"
+platform_admin_user     = "u01a538c"
+platform_admin_email    = "u01a538c@example.local"
+
 gitlab_external_url = "http://localhost:8080"
 gitlab_http_port    = 8080
 gitlab_ssh_port     = 2222
 
-jenkins_http_port      = 8082
-jenkins_agent_port     = 50000
-jenkins_admin_user     = "admin"
-# Recomendado: export TF_VAR_jenkins_admin_password="cambia-esto"
-# jenkins_admin_password = "cambia-esto"
+jenkins_http_port  = 8082
+jenkins_agent_port = 50000
 
 nexus_http_port         = 8081
 nexus_docker_group_port = 8083
