@@ -9,8 +9,10 @@ terraform {
     random = {
       source  = "hashicorp/random"
       version = "~> 3.6"
-=======
-      version = "~> 4.5"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
     }
   }
 }

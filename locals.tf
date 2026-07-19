@@ -15,9 +15,5 @@ locals {
     gitlab  = "${local.name_prefix}-gitlab:local"
     jenkins = "${local.name_prefix}-jenkins:local"
     nexus   = var.nexus_image
-=======
-  common_labels = {
-    project    = var.project_name
-    managed_by = "terraform"
   }
 }

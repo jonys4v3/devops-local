@@ -14,20 +14,11 @@ resource "docker_image" "this" {
 
 resource "docker_volume" "data" {
   name = "${var.name}-data"
-
-  dynamic "labels" {
-    for_each = merge(var.labels, { service = "nexus" })
-    content {
-      label = labels.key
-      value = labels.value
-    }
-  }
 }
 
 resource "docker_container" "this" {
-  name  = var.name
-  image = docker_image.this.image_id
-
+  name    = var.name
+  image   = docker_image.this.image_id
   restart = "unless-stopped"
 
   env = [
@@ -40,9 +31,6 @@ resource "docker_container" "this" {
     external = var.http_port
     protocol = "tcp"
   }
-
-  # Puerto reservado para repositorios Docker en Nexus.
-  # Debes crear/configurar el connector dentro de Nexus en el mismo puerto interno.
   ports {
     internal = var.docker_group_port
     external = var.docker_group_port
@@ -54,7 +42,6 @@ resource "docker_container" "this" {
     container_path = "/nexus-data"
     read_only      = false
   }
-
   networks_advanced {
     name = var.network_name
   }
@@ -73,5 +60,18 @@ resource "docker_container" "this" {
       label = labels.key
       value = labels.value
     }
+  }
+}
+
+resource "null_resource" "bootstrap" {
+  depends_on = [docker_container.this]
+
+  triggers = {
+    container = docker_container.this.id
+    user      = var.extra_admin_user
+  }
+
+  provisioner "local-exec" {
+    command = "bash ${path.root}/services/nexus/bootstrap-nexus.sh http://localhost:${var.http_port} ${docker_container.this.name} '${var.admin_password}' ${var.extra_admin_user} ${var.extra_admin_email} '${var.extra_admin_password}'"
   }
 }

@@ -1,29 +1,18 @@
 resource "docker_image" "this" {
   name = var.image_name
-
   build {
     context = var.build_context
   }
-
   keep_locally = true
 }
 
-resource "docker_volume" "config" {
-  name = "${var.name}-config"
-}
-
-resource "docker_volume" "logs" {
-  name = "${var.name}-logs"
-}
-
-resource "docker_volume" "data" {
-  name = "${var.name}-data"
-}
+resource "docker_volume" "config" { name = "${var.name}-config" }
+resource "docker_volume" "logs" { name = "${var.name}-logs" }
+resource "docker_volume" "data" { name = "${var.name}-data" }
 
 resource "docker_container" "this" {
-  name  = var.name
-  image = docker_image.this.image_id
-
+  name     = var.name
+  image    = docker_image.this.image_id
   restart  = "unless-stopped"
   hostname = var.name
 
@@ -38,14 +27,9 @@ resource "docker_container" "this" {
     external = var.http_port
     protocol = "tcp"
   }
-
   ports {
     internal = 22
-<<<<<<< HEAD
     external = var.ssh_port
-=======
-    external = var.gitlab_ssh_port
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
     protocol = "tcp"
   }
 
@@ -53,19 +37,16 @@ resource "docker_container" "this" {
     volume_name    = docker_volume.config.name
     container_path = "/etc/gitlab"
   }
-
   volumes {
     volume_name    = docker_volume.logs.name
     container_path = "/var/log/gitlab"
   }
-
   volumes {
     volume_name    = docker_volume.data.name
     container_path = "/var/opt/gitlab"
   }
 
   networks_advanced {
-<<<<<<< HEAD
     name = var.network_name
   }
 
@@ -75,9 +56,6 @@ resource "docker_container" "this" {
       label = labels.key
       value = labels.value
     }
-=======
-    name    = var.network_name
-    aliases = ["gitlab", "${var.project_name}_gitlab"]
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   }
 }
+
