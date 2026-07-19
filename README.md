@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DevOps Platform Terraform Professional
 
 Plataforma DevOps local/profesional desplegada con Terraform sobre Docker.
@@ -14,7 +13,7 @@ Este proyecto despliega una plataforma DevOps local usando Terraform y Docker.
 - GitLab CE
 - Jenkins LTS con Java 21, plugins preinstalados y JCasC
 - Artifactory OSS
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
+
 
 ## Estructura
 
@@ -31,7 +30,6 @@ devops-platform-terraform-professional/
 │   ├── network/
 │   ├── gitlab/
 │   ├── jenkins/
-<<<<<<< HEAD
 │   └── nexus/
 ├── services/
 │   ├── gitlab/
@@ -43,12 +41,10 @@ devops-platform-terraform-professional/
 │   ├── gitlab/
 │   ├── jenkins/
 │   └── artifactory/
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
 ├── scripts/
 └── docs/
 ```
 
-<<<<<<< HEAD
 ## Servicios
 
 - GitLab: `http://localhost:8080`
@@ -176,4 +172,3 @@ Cambia la contraseña en `terraform.tfvars` antes de desplegar.
 ## Importante
 
 GitLab y Artifactory usan imágenes base `latest` dentro de sus Dockerfiles para facilitar laboratorio local. Para producción, fija versiones concretas probadas en los Dockerfiles.
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38

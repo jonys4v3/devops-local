@@ -1,5 +1,4 @@
 locals {
-<<<<<<< HEAD
   name_prefix = "${var.project_name}-${var.environment}"
 
   common_labels = merge(
@@ -20,6 +19,5 @@ locals {
   common_labels = {
     project    = var.project_name
     managed_by = "terraform"
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   }
 }

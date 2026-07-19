@@ -1,5 +1,4 @@
 module "network" {
-<<<<<<< HEAD
   source = "./modules/network"
 
   name   = "${local.name_prefix}-net"
@@ -97,4 +96,3 @@ module "artifactory" {
 
   depends_on = [module.jenkins]
 }
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38

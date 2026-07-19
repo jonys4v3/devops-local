@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 output "network_name" {
   description = "Red Docker de la plataforma."
   value       = module.network.name
@@ -62,5 +61,4 @@ output "artifactory_url" {
 output "network_name" {
   description = "Red Docker compartida"
   value       = module.network.network_name
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
 }

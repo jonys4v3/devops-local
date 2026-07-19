@@ -1,5 +1,4 @@
 variable "project_name" {
-<<<<<<< HEAD
   description = "Nombre lógico del proyecto. Se usa como prefijo de recursos."
   type        = string
   default     = "devops-platform"
@@ -26,22 +25,19 @@ variable "docker_host" {
 
 variable "docker_host" {
   description = "Socket Docker local. En Linux/WSL suele ser unix:///var/run/docker.sock."
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
+
   type        = string
   default     = "unix:///var/run/docker.sock"
 }
 
 variable "timezone" {
-<<<<<<< HEAD
   description = "Zona horaria para los servicios."
 =======
   description = "Zona horaria de los contenedores."
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   type        = string
   default     = "Atlantic/Canary"
 }
 
-<<<<<<< HEAD
 variable "network_cidr" {
   description = "CIDR de la red Docker bridge."
   type        = string
@@ -71,12 +67,11 @@ variable "gitlab_external_url" {
 
 variable "gitlab_ssh_port" {
   description = "Puerto SSH expuesto para GitLab."
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   type        = number
   default     = 2222
 }
 
-<<<<<<< HEAD
+
 variable "jenkins_http_port" {
   description = "Puerto HTTP del host para Jenkins."
   type        = number
@@ -92,7 +87,7 @@ variable "jenkins_version" {
   description = "Versión Jenkins LTS usada por el Dockerfile de Jenkins."
   type        = string
   default     = "2.568.1"
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
+
 }
 
 variable "jenkins_admin_user" {
@@ -191,5 +186,4 @@ variable "artifactory_db_password" {
   type        = string
   sensitive   = true
   default     = "ArtifactoryPostgres123!"
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
 }
