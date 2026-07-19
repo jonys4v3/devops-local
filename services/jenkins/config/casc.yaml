@@ -1,22 +1,12 @@
 jenkins:
-<<<<<<< HEAD
   systemMessage: "Jenkins managed by Terraform and Configuration as Code"
   numExecutors: 2
   mode: NORMAL
-=======
-  systemMessage: "Jenkins DevOps gestionado con Terraform, Docker y Configuration as Code."
-  numExecutors: 0
-  mode: NORMAL
-  scmCheckoutRetryCount: 2
-  labelString: "controller"
-
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: "${JENKINS_ADMIN_ID}"
-<<<<<<< HEAD
           password: "${JENKINS_ADMIN_PASSWORD}"
   authorizationStrategy:
     loggedInUsersCanDoAnything:
@@ -24,25 +14,3 @@ jenkins:
 unclassified:
   location:
     url: "http://localhost:8082/"
-=======
-          name: "Administrador Jenkins"
-          password: "${JENKINS_ADMIN_PASSWORD}"
-
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
-
-  remotingSecurity:
-    enabled: true
-
-unclassified:
-  location:
-    url: "${JENKINS_PUBLIC_URL}"
-    adminAddress: "${JENKINS_ADMIN_EMAIL}"
-
-tool:
-  git:
-    installations:
-      - name: "Default"
-        home: "git"
->>>>>>> f2191a0d70d4c15d9153b706889f519ab85c6a38
